@@ -38,7 +38,7 @@ function Header() {
 function CoreConcept({ image, title, description }) {
   return (
     <li>
-      <img src={image} alt={title} />
+      <img src={image} alt={image} />
       <h3>{title}</h3>
       <p>{description}</p>
     </li>
@@ -53,11 +53,13 @@ function App() {
         <section id="core-concepts">
           <h2>Time to get started!</h2>
           <ul>
-            <CoreConcept
+            //! This way doesn't work after deconstructing at CoreConcept function level
+            {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
               img={CORE_CONCEPTS[0].image}
-            />
+            /> */}
+            <CoreConcept {...CORE_CONCEPTS[0]} />
             <CoreConcept {...CORE_CONCEPTS[1]} />
             <CoreConcept {...CORE_CONCEPTS[2]} />
             <CoreConcept {...CORE_CONCEPTS[3]} />
