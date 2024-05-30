@@ -1,49 +1,11 @@
-import reactImg from "./assets/react-core-concepts.png";
+
 //import componentImg from "./assets/components.png";
 //! No longer need image import as it's coming from data.js file
 import { CORE_CONCEPTS } from "./data.js";
+import Header from "./components/Header/Header.jsx"
+import CoreConcept from "./components/CoreConcept/CoreConcept.jsx";
 
-const reactDescriptions = ["Fundamental", "Crucial", "Core"];
 
-function genRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  const description = reactDescriptions[genRandomInt(2)];
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>
-        {description} React concepts you will need for almost any app you are
-        going to build!
-      </p>
-    </header>
-  );
-}
-
-// function CoreConcept(props) {
-//   return (
-//     <li>
-//       <img src={props.img} alt={props.title} />
-//       <h3>{props.title}</h3>
-//       <p>{props.description}</p>
-//     </li>
-//   );
-// }
-//! destructuring the props opbject
-//! allows you to target specific items from the object
-
-function CoreConcept({ image, title, description }) {
-  return (
-    <li>
-      <img src={image} alt={image} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  );
-}
 
 function App() {
   return (
@@ -53,7 +15,7 @@ function App() {
         <section id="core-concepts">
           <h2>Time to get started!</h2>
           <ul>
-            //! This way doesn't work after deconstructing at CoreConcept function level
+            {/* This way doesn't work after deconstructing at CoreConcept function level */}
             {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
