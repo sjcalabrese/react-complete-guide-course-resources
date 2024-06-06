@@ -1,19 +1,26 @@
 //import componentImg from "./assets/components.png";
 //! No longer need image import as it's coming from data.js file
+import { useState} from 'react';
 import { CORE_CONCEPTS } from "./data.js";
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept/CoreConcept.jsx";
 import TabButton from "./components/TabButton/TabButton.jsx";
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState('Please click a button');
   let tabContent = 'Please click a button';
 
   function handleSelect(selectedButton) {
     //selectedButton => 'components', 'jsx', 'props', 'state'
+    
     console.log(selectedButton);
-    tabContent = selectedButton;
+    // no longer need tabContent
+    //tabContent = selectedButton;
+    //updating  setSelectedTopic instead
+    setSelectedTopic(selectedButton);
   }
   console.log('App component only renders once :)')
+  console.log('selected topic ' + selectedTopic);
   return (
     <div>
       <Header></Header>
@@ -41,7 +48,8 @@ function App() {
             <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
-          {tabContent}
+          {/* Updated this to selected topic */}
+          {selectedTopic}
         </section>
       </main>
     </div>
