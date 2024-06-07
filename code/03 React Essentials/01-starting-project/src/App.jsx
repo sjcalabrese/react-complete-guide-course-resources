@@ -12,7 +12,7 @@ function App() {
   //identifier being passed on button click matches object
   //from EXAMPLES in data.js file
   const [selectedTopic, setSelectedTopic] = useState();
-  let tabContent = "Please click a button";
+  // let tabContent = "Please click a button";
 
   function handleSelect(selectedButton) {
     //selectedButton => 'components', 'jsx', 'props', 'state'
@@ -25,6 +25,21 @@ function App() {
   }
   console.log("App component only renders once :)");
   console.log("selected topic " + selectedTopic);
+
+  let tabContent = <p>Please Select a Topic</p>
+
+  if (selectedTopic){
+    tabContent = 
+      <div id="tab-content">        
+        
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div> 
+  }
+
   return (
     <div>
       <Header></Header>
@@ -58,16 +73,8 @@ function App() {
           {selectedTopic}*/}
           {/* !selectedTopic is similar to useing selectedTopic ===undefined */}
             {/* Null will allow you to render nothing */}
-          {!selectedTopic && <p>Please Select a Topic</p>}
-          {selectedTopic && 
-          <div id="tab-content">        
-            
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div> }
+          {tabContent}
+          
         </section>
       </main>
     </div>
