@@ -11,7 +11,7 @@ function App() {
   //Can use the state to get the data from data.js, but only if it selected
   //identifier being passed on button click matches object
   //from EXAMPLES in data.js file
-  const [selectedTopic, setSelectedTopic] = useState("components");
+  const [selectedTopic, setSelectedTopic] = useState();
   let tabContent = "Please click a button";
 
   function handleSelect(selectedButton) {
@@ -56,13 +56,19 @@ function App() {
           </menu>
           {/* Updated this to selected topic 
           {selectedTopic}*/}
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {/* !selectedTopic is similar to useing selectedTopic ===undefined */}
+          {/* Null will allow you to render nothing */}
+          {!selectedTopic ? (
+            <p>Please Select a Topic</p>
+          ) : (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
         </section>
       </main>
     </div>
