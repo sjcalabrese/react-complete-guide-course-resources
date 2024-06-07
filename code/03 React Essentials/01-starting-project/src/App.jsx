@@ -57,18 +57,17 @@ function App() {
           {/* Updated this to selected topic 
           {selectedTopic}*/}
           {/* !selectedTopic is similar to useing selectedTopic ===undefined */}
-          {/* Null will allow you to render nothing */}
-          {!selectedTopic ? (
-            <p>Please Select a Topic</p>
-          ) : (
-            <div id="tab-content">
-              <h3>{EXAMPLES[selectedTopic].title}</h3>
-              <p>{EXAMPLES[selectedTopic].description}</p>
-              <pre>
-                <code>{EXAMPLES[selectedTopic].code}</code>
-              </pre>
-            </div>
-          )}
+            {/* Null will allow you to render nothing */}
+          {!selectedTopic && <p>Please Select a Topic</p>}
+          {selectedTopic && 
+          <div id="tab-content">        
+            
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div> }
         </section>
       </main>
     </div>
