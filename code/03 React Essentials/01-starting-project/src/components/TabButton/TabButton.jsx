@@ -1,9 +1,9 @@
-export default function TabButton({children, onSelect}) {
+export default function TabButton({children, onSelect, isSelected}) {
 //   Can use any name for you props except for "children" suck as onSelect
     
     return (
     <li>
-      <button onClick={onSelect}>{children}</button>
+      <button className={isSelected ? 'active': ''} onClick={onSelect}>{children}</button>
     </li>
   );
 }
