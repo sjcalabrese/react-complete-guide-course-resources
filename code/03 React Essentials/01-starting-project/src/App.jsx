@@ -26,18 +26,18 @@ function App() {
   console.log("App component only renders once :)");
   console.log("selected topic " + selectedTopic);
 
-  let tabContent = <p>Please Select a Topic</p>
+  let tabContent = <p>Please Select a Topic</p>;
 
-  if (selectedTopic){
-    tabContent = 
-      <div id="tab-content">        
-        
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
         <h3>{EXAMPLES[selectedTopic].title}</h3>
         <p>{EXAMPLES[selectedTopic].description}</p>
         <pre>
           <code>{EXAMPLES[selectedTopic].code}</code>
         </pre>
-      </div> 
+      </div>
+    );
   }
 
   return (
@@ -47,34 +47,63 @@ function App() {
         <section id="core-concepts">
           <h2>Time to get started!</h2>
           <ul>
+            {/* To display the array of objects dynamically you will need to use .map
+            This will iterate over each item in the array and then map it similar to how we were 
+            manually doing it before. 
+            
+            In order to get rid of the error in chrome when inspecting, you will need to add a unique key*/}
+
+            {CORE_CONCEPTS.map((conceptItem) => (
+              <CoreConcept key={conceptItem.title} {...conceptItem} />
+            ))}
+
             {/* This way doesn't work after deconstructing at CoreConcept function level */}
             {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
               img={CORE_CONCEPTS[0].image}
             /> */}
-            <CoreConcept {...CORE_CONCEPTS[0]} />
+
+            {/* ***********No longer needed now that we're using the map method. */}
+            {/* <CoreConcept {...CORE_CONCEPTS[0]} />
             <CoreConcept {...CORE_CONCEPTS[1]} />
             <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+            <CoreConcept {...CORE_CONCEPTS[3]} /> */}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect("components")}>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleSelect("components")}
+            >
               Components
             </TabButton>
-            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect("state")}>State</TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleSelect("props")}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              State
+            </TabButton>
           </menu>
           {/* Updated this to selected topic 
           {selectedTopic}*/}
           {/* !selectedTopic is similar to useing selectedTopic ===undefined */}
-            {/* Null will allow you to render nothing */}
+          {/* Null will allow you to render nothing */}
           {tabContent}
-          
         </section>
       </main>
     </div>
