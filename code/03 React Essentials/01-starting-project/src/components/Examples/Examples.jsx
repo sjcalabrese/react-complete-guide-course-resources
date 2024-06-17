@@ -30,7 +30,7 @@ export default function Examples() {
         {/* Can pass the element type as well, if it's a custom container use {}, if
         its a built in contianer name just pass it as a string */}
       <Tabs ButtonsContainer="menu"
-        button={
+        buttons={
           <>
             <TabButton
               isSelected={selectedTopic === "components"}
