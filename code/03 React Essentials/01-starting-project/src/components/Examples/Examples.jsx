@@ -27,7 +27,9 @@ export default function Examples() {
 
   return (
     <Section title="Examples" id="examples">
-      <Tabs
+        {/* Can pass the element type as well, if it's a custom container use {}, if
+        its a built in contianer name just pass it as a string */}
+      <Tabs ButtonsContainer="menu"
         button={
           <>
             <TabButton
