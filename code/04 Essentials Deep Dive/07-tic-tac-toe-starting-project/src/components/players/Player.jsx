@@ -4,7 +4,7 @@ export default function Player({ name, symbol }) {
 
   function handleEditClick() {
     //by using the ! it will set to the opposite of what it currently is
-    setIsEditing(!isEditing);
+    setIsEditing((editing) => !editing);
   }
 
   let playerName = <span className="player-name">{name}</span>;
