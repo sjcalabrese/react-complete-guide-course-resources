@@ -1,11 +1,14 @@
 import { useState } from "react";
-export default function Player({ initalName, symbol, isActive }) {
+export default function Player({ initalName, symbol, isActive, onChangeName }) {
   const [playerName, setPlayerName] = useState(initalName);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick() {
     //by using the ! it will set to the opposite of what it currently is
     setIsEditing((editing) => !editing);
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
