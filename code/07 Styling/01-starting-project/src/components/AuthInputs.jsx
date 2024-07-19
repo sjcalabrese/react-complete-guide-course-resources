@@ -31,21 +31,23 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs">
+    <div
+      id="auth-inputs"
+      className="w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-stone-800"
+    >
       <ControlContainer>
         <Input
-          label="email"
-          $invalid={emailNotValid}
+          label="Email"
+          invalid={emailNotValid}
           type="email"
           // style={{
-          //   backgroundColor: emailNotValid ? "#fed2d2" : "#d1d5db",
+          //   backgroundColor: emailNotValid ? '#fed2d2' : '#d1d5db'
           // }}
-          // className={emailNotValid ? 'invalid' : undefined}
           onChange={(event) => handleInputChange("email", event.target.value)}
         />
         <Input
-          lable="password"
-          $invalid={passwordNotValid}
+          invalid={passwordNotValid}
+          label="Password"
           type="password"
           onChange={(event) =>
             handleInputChange("password", event.target.value)
