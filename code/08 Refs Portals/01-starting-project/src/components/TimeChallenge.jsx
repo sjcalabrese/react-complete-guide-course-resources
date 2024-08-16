@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import ResultModal from "./ResultModal";
 
 //let timer;
 /* cannot use a global veriable as a solution to stop the timer becuase if you try
@@ -9,6 +10,7 @@ when you attempt to stop it.
 
 export default function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
+  const dialog = useRef();
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
   
@@ -17,6 +19,7 @@ export default function TimerChallenge({ title, targetTime }) {
     console.log("Timer started");
     timer.current = setTimeout(() => {
       setTimerExpired(true);
+      dialog.current.showModal(); 
     }, targetTime * 1000);
     setTimerStarted(true);
   }
@@ -28,6 +31,8 @@ export default function TimerChallenge({ title, targetTime }) {
   }
 
   return (
+    <>
+    <ResultModal ref={dialog} targetTime={targetTime} result="lost"/>
     <section className="challenge">
       <h2>{title}</h2>
       {timerExpired && <p>Timer Expired, You Lost!</p>}
@@ -43,5 +48,6 @@ export default function TimerChallenge({ title, targetTime }) {
         {timerStarted ? "Time is running..." : "Timer inactive"}
       </p>
     </section>
+    </>
   );
 }
