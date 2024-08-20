@@ -1,4 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
+import { createPortal} from 'react-dom'
 //need to use forwardRef to pass the ref to the dialog element
 //when structured like this you will then received a second argument (ref) outside the props argument
 
@@ -19,7 +20,10 @@ const ResultModal = forwardRef(function ResultModal(
     };
   });
 
-  return (
+  //create portal allows you to move where this element will be rendered to, which is the 
+  //dev element with the modal id to help prevent it from potentially being stuck behind another
+  //element on a larger application
+  return createPortal(
     <dialog ref={dialog} className="result-modal">
       {userLost && <h2>You Lost</h2>}
       {!userLost && <h2>Your Score: {score}</h2>}
@@ -32,7 +36,9 @@ const ResultModal = forwardRef(function ResultModal(
       <form method="dialog" onSubmit={onReset}>
         <button>Close</button>
       </form>
-    </dialog>
+    </dialog>,
+    document.getElementById('modal')
+
   );
 });
 export default ResultModal;
