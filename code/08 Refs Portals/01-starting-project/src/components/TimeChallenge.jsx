@@ -19,7 +19,8 @@ export default function TimerChallenge({ title, targetTime }) {
     console.log("Timer started");
     timer.current = setTimeout(() => {
       setTimerExpired(true);
-      dialog.current.showModal(); 
+      //Potential issue here if there are multiple <dialog> tags or if that dialog tag gets changed to a div or something else
+      dialog.current.open(); 
     }, targetTime * 1000);
     setTimerStarted(true);
   }
